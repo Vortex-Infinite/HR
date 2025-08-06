@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="dashboard-page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dashboard - ABC INC</title>
+    <link rel="stylesheet" href="dashboard_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-logo">ABC INC</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-search"></i><span>Sourcing</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-trophy"></i><span>Leadership</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-graduation-cap"></i><span>Learning</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-heartbeat"></i><span>Wellness</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Collapse</span>
+                </button>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="dashboard-header">
+                <div class="header-title">HR Admin Dashboard</div>
+                <button class="logout-btn" id="logout-btn">Logout</button>
+            </header>
+
+            <main class="main-content">
+                <div class="welcome-message">
+                    <h1>Welcome, HR Admin!</h1>
+                    <p>Here is an overview of your management modules.</p>
+                </div>
+                <div class="module-grid">
+                    <div class="module-card">
+                        <h3>Sourcing Module</h3>
+                        <p>Manage AI resume screening, talent sourcing, and candidate pipelines.</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Leadership Module</h3>
+                        <p>Identify high-potential employees and track performance appraisals.</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Learning Module</h3>
+                        <p>Oversee the gamified learning system and analyze skill gaps.</p>
+                    </div>
+                    <div class="module-card">
+                        <h3>Wellness Module</h3>
+                        <p>View aggregated employee wellness data and HR insights.</p>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="dashboard-footer">
+                <div class="powered-by">Powered by Vortex Infinite</div>
+                 <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-checkbox">
+                        <input type="checkbox" id="theme-checkbox" />
+                        <div class="slider round"><span class="knob"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></span></div>
+                    </label>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
