@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>HRMS Login Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/themes.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+<body>
+    <button id="theme-switch" title="Toggle light/dark mode">🌗</button>
+    
+    <!-- External Sidebar Toggle Button -->
+    <button class="sidebar-toggle-btn-external" id="sidebar-toggle-external">
+        <img src="assets/icons/menu-hamburger.svg" width="18" height="18" alt="Menu">
+    </button>
+
+    <div id="root"></div>
+
+    <!-- Footer -->
+    <div class="footer" id="footer">
+        <div class="footer-content">
+            Powered by <b>Vortex Infinite</b>
+        </div>
+    </div>
+
+    <!-- Chatbot Button -->
+    <button class="chatbot-button" id="chatbot-btn">
+        <img src="assets/icons/chat.svg" width="28" height="28" alt="Chat">
+    </button>
+
+    <!-- Chatbot Sidebar -->
+    <div class="chatbot-sidebar" id="chatbot-sidebar">
+        <div class="chatbot-header">
+            <h3>🤖 HR Assistant</h3>
+            <button class="chatbot-close" id="chatbot-close">
+                <img src="assets/icons/close.svg" width="20" height="20" alt="Close">
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot">
+                Hello! I'm your HR Assistant. How can I help you today? 😊
+            </div>
+            <div class="chat-message bot">
+                I can help you with:<br>
+                • Leave requests<br>
+                • Payroll questions<br>
+                • Company policies<br>
+                • General HR inquiries
+            </div>
+        </div>
+        <div class="chatbot-input-container">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Type your message...">
+            <button class="chatbot-send" id="chatbot-send">
+                <img src="assets/icons/send.svg" width="16" height="16" alt="Send">
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+    <script src="pages/landing.js"></script>
+    <script src="pages/hr-login.js"></script>
+    <script src="pages/hr-otp.js"></script>
+    <script src="pages/employee-login.js"></script>
+    <script src="pages/dashboard.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

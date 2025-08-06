@@ -1,0 +1,62 @@
+/* Light mode colors - Updated with modern professional palette */
+:root[data-theme='light'] {
+    --bg: #edefef;
+    --card-bg: #f0efe7;
+    --border: #e2e8f0;
+    --main-text: #1c2025;
+    --muted: #64748b;
+    --accent: #3b82f6; /* Changed from #245b8c to modern blue */
+    --accent-faded: #f8fafc; /* Changed from #fffafa to clean white */
+    --accent-hover: #2563eb; /* New hover color */
+    --accent-light: #dbeafe; /* New light accent */
+    --shadow: 0 6px 24px rgba(59, 130, 246, 0.09), 0 1.5px 3px rgba(0, 0, 0, 0.06);
+    --error: #ef4444;
+    --success: #10b981;
+}
+
+/* Dark mode colors - Updated with modern professional palette */
+:root[data-theme='dark'] {
+    --bg: #1c2025;
+    --card-bg: #23272e;
+    --border: #334155;
+    --main-text: #f8fafd;
+    --muted: #94a3b8;
+    --accent: #6366f1; /* Changed from #4397f7 to modern indigo */
+    --accent-faded: #1e293b; /* Changed from #222d3b to cleaner dark */
+    --accent-hover: #5b21b6; /* New hover color */
+    --accent-light: #312e81; /* New light accent */
+    --shadow: 0 8px 32px rgba(99, 102, 241, 0.15), 0 1.5px 3px rgba(0, 0, 0, 0.18);
+    --error: #f87171;
+    --success: #34d399;
+}
+
+/* Fix for dark mode input text visibility */
+:root[data-theme='dark'] input {
+    color: #000000 !important;
+}
+
+/* Theme switch button */
+#theme-switch {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    background: var(--accent-faded);
+    color: var(--accent);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#theme-switch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--accent);
+}
