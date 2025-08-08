@@ -37,14 +37,29 @@
             <div class="powered-by">Powered by Vortex Infinite</div>
              <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="theme-checkbox">
-                    <input type="checkbox" id="theme-checkbox" />
-                    <div class="slider round"><span class="knob"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></span></div>
+                    <input type="checkbox" id="theme-checkbox" aria-label="Toggle dark mode" />
+                    <div class="slider round"><span class="knob"><i class="fas fa-sun" aria-hidden="true"></i><i class="fas fa-moon" aria-hidden="true"></i></span></div>
                 </label>
             </div>
         </footer>
     </div>
 
-
+    <script>
+        // Check authentication before loading the page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = '../auth/employee_login.html';
+                return;
+            }
+            
+            const user = JSON.parse(currentUser);
+            if (user.role !== 'Employee') {
+                window.location.href = '../auth/employee_login.html';
+                return;
+            }
+        });
+    </script>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/script.js"></script>
 </body>
