@@ -1,115 +1,118 @@
 /* === ADD THESE NEW STYLES TO THE END OF dashboard_style.css === */
 
-/* Header Greeting */
-.dash-greeting {
-    font-size: 1.1rem;
-}
-.dash-greeting b {
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-.dash-greeting span {
-    color: var(--text-secondary);
-    margin-left: 10px;
+/* Header Profile Button & Dropdown */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
 }
 
-/* Dashboard Actions */
-.dash-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-.dash-actions .btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    border-radius: 8px;
+.profile-btn {
+    background: none;
     border: none;
-    font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s;
-}
-.dash-actions .btn:hover {
-    opacity: 0.9;
-}
-
-/* Widget Styles */
-.dash-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-}
-.widget {
-    background-color: var(--card-color);
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    border: 1px solid var(--border-color);
-}
-.widget .title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-.widget .title span {
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-.full-width-widget {
-    margin-top: 25px;
-}
-
-/* Specific Widget Styles */
-.clock-in-widget {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-.clock-in-widget .status-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-.clock-in-widget .progress-bg { stroke: var(--shadow-color); }
-.clock-in-widget .progress-bar { stroke: var(--accent-color); stroke-dasharray: 125; stroke-dashoffset: 30.9; }
-.clock-in-widget .progress-text { fill: var(--text-primary); font-size: 19px; }
-.btn { padding: 10px 15px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; }
-.btn-success { background-color: #28a745; color: white; width: 78%;}
 
-.inbox-msg, .event {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
+.profile-btn img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    width: 240px;
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 100;
+}
+
+.profile-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 10px 15px;
     border-bottom: 1px solid var(--border-color);
-    font-size: 14px;
-    line-height: 1.5;
 }
-.inbox-msg:last-child, .event:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-.inbox-msg span, .event span {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-.event span:first-of-type {
-    color: var(--accent-color);
+.dropdown-header .name {
     font-weight: 600;
-}
-
-.who-is-in .status-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
     font-size: 15px;
 }
-.who-is-in b { font-size: 1.1rem; }
-.who-is-in b.error { color: #dc3545; }
-.who-is-in b.success { color: #28a745; }
+.dropdown-header .email {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
 
-.user-list { display: flex; gap: 20px; overflow-x: auto; }
-.user-card { text-align: center; flex-shrink: 0; }
-.user-card img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 8px; border: 2px solid var(--border-color); }
-.user-card .name { display: block; font-size: 14px; font-weight: 500; }
-.user-card .bd { font-size: 12px; color: var(--text-secondary); }
+.dropdown-section {
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+.dropdown-item:hover {
+    background-color: var(--bg-color);
+}
+.dropdown-item i {
+    width: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.theme-switch-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+}
+
+/* Employee Dashboard Widgets */
+.employee-widget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+.list-widget .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.list-widget .list-item:last-child {
+    border-bottom: none;
+}
+.list-widget .item-name {
+    font-weight: 500;
+}
+.list-widget .item-value {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+.list-widget .item-value.pending {
+    color: var(--warning);
+}

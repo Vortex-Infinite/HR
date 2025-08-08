@@ -10,16 +10,16 @@
 <body>
     <div class="theme-switch-wrapper">
         <label class="theme-switch" for="theme-checkbox">
-            <input type="checkbox" id="theme-checkbox" />
+            <input type="checkbox" id="theme-checkbox" aria-label="Toggle dark mode" />
             <div class="slider round">
                 <span class="knob">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun" aria-hidden="true"></i>
+                    <i class="fas fa-moon" aria-hidden="true"></i>
                 </span>
             </div>
         </label>
     </div>
-    <div class="login-container">
+    <main class="login-container">
         <h1 class="company-name">ABC INC</h1>
         <h2>Employee Portal</h2>
         <p class="subtitle">Please log in to continue</p>
@@ -27,17 +27,17 @@
         <form id="employee-login-form">
             <div class="input-group">
                 <label for="employeeId">Employee Email</label>
-                <input type="email" id="employeeId" required>
+                <input type="email" id="employeeId" required aria-describedby="employee-email-help">
             </div>
             <div class="input-group">
                 <label for="employeePassword">Password</label>
-                <input type="password" id="employeePassword" required>
+                <input type="password" id="employeePassword" required aria-describedby="employee-password-help">
             </div>
             <button type="submit">Login</button>
         </form>
         <p class="admin-contact">Forgot your password? Please contact your Administrator.</p>
-    </div>
-    <div class="powered-by">Powered by Vortex Infinite</div>
+    </main>
+    <footer class="powered-by">Powered by Vortex Infinite</footer>
     <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/script.js"></script>
 </body>

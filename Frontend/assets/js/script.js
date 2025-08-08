@@ -1,12 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- THEME SWITCHER LOGIC (Universal) ---
+    // --- THEME MANAGEMENT ---
     const themeCheckbox = document.getElementById('theme-checkbox');
     const applyTheme = (theme) => {
         document.body.classList.toggle('dark-mode', theme === 'dark-mode');
         if (themeCheckbox) themeCheckbox.checked = (theme === 'dark-mode');
     };
-    const savedTheme = localStorage.getItem('theme') || 'light-mode';
-    applyTheme(savedTheme);
+
+    // Check for saved theme, if none, check system preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark ? 'dark-mode' : 'light-mode');
+    }
+
     if (themeCheckbox) {
         themeCheckbox.addEventListener('change', () => {
             const newTheme = themeCheckbox.checked ? 'dark-mode' : 'light-mode';
@@ -15,15 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LOGIN PAGE LOGIC ---
+    // --- EMPLOYEE LOGIN LOGIC ---
     const employeeLoginForm = document.getElementById('employee-login-form');
     if (employeeLoginForm) {
         employeeLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
             const email = document.getElementById('employeeId').value;
-            const pass = document.getElementById('employeePassword').value;
+            const password = document.getElementById('employeePassword').value;
+            
             try {
-                await mockSignIn(email, pass, 'Employee');
+                await mockSignIn(email, password, 'Employee');
+                // Store user info in localStorage for dashboard access
+                localStorage.setItem('currentUser', JSON.stringify({
+                    email: email,
+                    role: 'Employee'
+                }));
                 window.location.href = '../pages/employee_home.html';
             } catch (error) {
                 alert(error.message);
@@ -31,49 +46,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- HR LOGIN LOGIC ---
     const hrLoginForm = document.getElementById('hr-login-form');
+    const hrCredentialsForm = document.getElementById('hr-credentials-form');
+    const hrOtpForm = document.getElementById('hr-otp-form');
+    const otpVerifyForm = document.getElementById('otp-verify-form');
+    
     if (hrLoginForm) {
-        const hrCredentialsForm = document.getElementById('hr-credentials-form');
-        const hrOtpForm = document.getElementById('hr-otp-form');
-        const otpVerifyForm = document.getElementById('otp-verify-form');
-
-        // Step 1: Handle ID and Password submission
         hrLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
             const email = document.getElementById('hrId').value;
-            const pass = document.getElementById('hrPassword').value;
-
+            const password = document.getElementById('hrPassword').value;
+            
             try {
-                await mockSignIn(email, pass, 'HR');
-                // On successful credential check, hide the first form and show the OTP form.
+                await mockSignIn(email, password, 'HR');
+                // Show OTP form
                 hrCredentialsForm.classList.add('hidden');
                 hrOtpForm.classList.remove('hidden');
             } catch (error) {
                 alert(error.message);
             }
         });
-
-        // Step 2: Handle OTP verification
-        if (otpVerifyForm) {
-            otpVerifyForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const otp = document.getElementById('otp').value;
-                const hrUser = mockUsers.hr;
-
-                if (otp === hrUser.otp) {
-                    alert('OTP Verified. Welcome HR Admin!');
-                    await logToMongo({
-                        userId: hrUser.email,
-                        role: 'HR',
-                        loginTime: new Date().toISOString(),
-                        event: 'login'
-                    });
-                    window.location.href = '../pages/dashboard.html';
-                } else {
-                    alert('Invalid OTP. Please try again.');
-                }
-            });
-        }
+    }
+    
+    if (otpVerifyForm) {
+        otpVerifyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const otp = document.getElementById('otp').value;
+            const email = document.getElementById('hrId').value;
+            
+            // Check if OTP matches the mock OTP
+            if (otp === '123456') {
+                // Store user info in localStorage for dashboard access
+                localStorage.setItem('currentUser', JSON.stringify({
+                    email: email,
+                    role: 'HR'
+                }));
+                window.location.href = '../pages/dashboard.html';
+            } else {
+                alert('Invalid OTP. Please try again.');
+            }
+        });
     }
     
     // --- DASHBOARD PAGE LOGIC ---
@@ -81,22 +96,49 @@ document.addEventListener('DOMContentLoaded', () => {
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebar-toggle');
         const logoutBtn = document.getElementById('logout-btn');
+        const profileBtn = document.getElementById('profile-btn');
+        const profileDropdown = document.getElementById('profile-dropdown');
 
+        // Sidebar toggle
         if (sidebarToggle) {
             sidebarToggle.addEventListener('click', () => {
                 sidebar.classList.toggle('collapsed');
             });
         }
         
+        // Logout
         if (logoutBtn) {
             logoutBtn.addEventListener('click', async () => {
-                try {
-                    await mockSignOut();
-                    window.location.href = '../index.html';
-                } catch (error) {
-                    console.error("Logout Failed:", error);
-                }
+                await mockSignOut();
+                localStorage.removeItem('currentUser');
+                window.location.href = '../index.html';
             });
         }
+
+        // Profile Dropdown
+        if (profileBtn) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevents the window click event from firing immediately
+                profileDropdown.classList.toggle('active');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', () => {
+            if (profileDropdown && profileDropdown.classList.contains('active')) {
+                profileDropdown.classList.remove('active');
+            }
+        });
+
+        // Live Clock
+        const timeElement = document.getElementById('live-time');
+        const updateClock = () => {
+            if (timeElement) {
+                const now = new Date();
+                timeElement.textContent = now.toLocaleTimeString('en-US');
+            }
+        };
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
     }
 });

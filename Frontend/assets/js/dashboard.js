@@ -1,5 +1,23 @@
 // HR Dashboard page component
 window.DashboardPage = {
+    init() {
+        // Check if user is authenticated
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            window.location.href = '../auth/hr_login.html';
+            return;
+        }
+        
+        const user = JSON.parse(currentUser);
+        if (user.role !== 'HR') {
+            window.location.href = '../auth/hr_login.html';
+            return;
+        }
+        
+        this.render();
+        this.initializeInteractions();
+    },
+
     render() {
         document.getElementById('root').innerHTML = `
             <div class="dashboard-container">
@@ -14,8 +32,8 @@ window.DashboardPage = {
                     <div class="sidebar-section">
                         <div class="sidebar-section-title">Personal</div>
                         <button class="sidebar-menu-item active" data-menu="profile">
-                            <img src="https://img.icons8.com/ios-glyphs/30/user-male-circle.png" width="18" height="18" alt="Profile">
-                            Profile
+                            <img src="../assets/images/home-icon-silhouette.png" width="18" height="18" alt="Profile">
+                            Home
                         </button>
                         <button class="sidebar-menu-item" data-menu="clock">
                             <img src="https://img.icons8.com/ios-glyphs/30/clock--v1.png" width="18" height="18" alt="Clock">
@@ -107,34 +125,34 @@ window.DashboardPage = {
                             <div>Clocked in: <b style="color:var(--success)">19</b></div>
                             <div>On a break: <b style="color:var(--accent-color)">3</b></div>
                         </div>
+                </div>
+                
+                <div class="widget" style="margin-top:20px;">
+                <span class="title">Colleagues</span>
+                <div class="user-list">
+                    <div class="user-card">
+                    <img src="https://randomuser.me/api/portraits/women/57.jpg" alt="Clara Copper">
+                    <span class="name">Clara</span>
+                    <span class="bd">Feb 21 🎂</span>
                     </div>
-                    
-                    <div class="widget" style="margin-top:20px;">
-                        <span class="title">Colleagues</span>
-                        <div class="user-list">
-                            <div class="user-card">
-                                <img src="https://randomuser.me/api/portraits/women/57.jpg" alt="Clara Copper">
-                                <span class="name">Clara</span>
-                                <span class="bd">Feb 21 🎂</span>
-                            </div>
-                            <div class="user-card">
-                                <img src="https://randomuser.me/api/portraits/men/87.jpg" alt="Cristopher Clark">
-                                <span class="name">Cristopher</span>
-                                <span class="bd">Feb 22 🎂</span>
-                            </div>
-                            <div class="user-card">
-                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Lewis">
-                                <span class="name">Laura</span>
-                                <span class="bd">Feb 25 🎂</span>
-                            </div>
-                            <div class="user-card">
-                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Bernarda Baker">
-                                <span class="name">Bernarda</span>
-                                <span class="bd">Feb 25 🎂</span>
-                            </div>
-                        </div>
+                    <div class="user-card">
+                    <img src="https://randomuser.me/api/portraits/men/87.jpg" alt="Cristopher Clark">
+                    <span class="name">Cristopher</span>
+                    <span class="bd">Feb 22 🎂</span>
+                    </div>
+                    <div class="user-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Lewis">
+                    <span class="name">Laura</span>
+                    <span class="bd">Feb 25 🎂</span>
+                    </div>
+                    <div class="user-card">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Bernarda Baker">
+                    <span class="name">Bernarda</span>
+                    <span class="bd">Feb 25 🎂</span>
                     </div>
                 </div>
+                </div>
+            </div>
             </div>
         `;
 
@@ -194,4 +212,4 @@ window.DashboardPage = {
 };
 
 // Initial render when the script loads
-DashboardPage.render();
+DashboardPage.init();
