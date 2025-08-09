@@ -178,7 +178,9 @@ window.DashboardPage = {
             'profile': () => alert('Profile page - Coming soon!'),
             'clock': () => alert('Clock in/out functionality'),
             'timeoff': () => alert('Time off requests page'),
-            'documents': () => alert('Documents management'),
+            'documents': () => {
+                window.location.href = '../pages/document.html';
+            },
             'training': () => alert('Training modules'),
             'employees': () => alert('Employee management'),
             'recruitment': () => alert('Recruitment portal'),
