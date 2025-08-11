@@ -12,7 +12,7 @@
   <div class="dashboard-container">
     <div class="sidebar">
       <div class="sidebar-logo">
-        <h2>ABC INC</h2>
+  <h2 style="color:#000;">ABC INC</h2>
         <button class="sidebar-toggle-btn-internal" id="sidebar-toggle-internal">
           <img src="https://img.icons8.com/ios-glyphs/30/menu--v1.png" width="16" height="16" alt="Menu">
         </button>
@@ -58,17 +58,17 @@
     </div>
     <div class="dashboard-main" style="display:flex;justify-content:center;align-items:flex-start;height:100vh;background:#f8fafd;">
   <div class="doc-card" style="background:#fff;box-shadow:0 8px 32px rgba(39,68,114,.09);border-radius:18px;padding:32px 32px 70px;max-width:900px;width:900px;margin-top:56px;">
-        <div class="doc-title" style="font-size:1.7rem;font-weight:700;color:#274472;margin:8px 0 14px;display:flex;gap:10px;align-items:center"><i class="fa fa-folder"></i> My Documents</div>
+  <div class="doc-title" style="font-size:1.7rem;font-weight:700;color:#000;margin:8px 0 14px;display:flex;gap:10px;align-items:center"><i class="fa fa-folder"></i> My Documents</div>
         <div class="table-wrap" style="border:1px solid #e0e6ed;border-radius:12px;overflow:hidden;margin-bottom:24px;">
           <div class="scroll-area">
             <table style="width:100%;border-collapse:separate;border-spacing:0;">
               <thead>
                 <tr style="background:#f2f5fb;color:#274472;">
-                  <th>Document Name</th>
-                  <th>Type</th>
-                  <th>Date Uploaded</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th style="color:#000;">Document Name</th>
+                  <th style="color:#000;">Type</th>
+                  <th style="color:#000;">Date Uploaded</th>
+                  <th style="color:#000;">Status</th>
+                  <th style="color:#000;">Action</th>
                 </tr>
               </thead>
               <tbody id="docBody">
@@ -86,7 +86,7 @@
       <div class="modal-bg" id="modalBg2" style="display:none;align-items:center;justify-content:center;background:rgba(10,24,55,.23);z-index:99;position:fixed;inset:0;">
         <div class="modal" style="background:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(39,68,114,.13);padding:32px;width:420px;max-width:95vw;position:relative;">
           <button class="close-btn" id="closeModal2" title="Close" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.1rem;color:#009ffd;cursor:pointer"><i class="fa fa-times"></i></button>
-          <div class="modal-title" style="font-weight:700;color:#274472;margin-bottom:14px;display:flex;gap:8px;align-items:center"><i class="fa fa-upload"></i> Upload Document</div>
+          <div class="modal-title" style="font-weight:700;color:#000;margin-bottom:14px;display:flex;gap:8px;align-items:center"><i class="fa fa-upload"></i> Upload Document</div>
           <div class="row" style="display:flex;align-items:center;gap:10px;margin:8px 0">
             <span class="label" style="color:#274472;font-weight:600;min-width:170px">Select a document:</span>
           </div>
@@ -165,7 +165,7 @@ function addRow2(fileName){
   const dateStr = now.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).replace(/ /g,'-');
   const type = guessType2(fileName);
   const tr = document.createElement('tr');
-  tr.innerHTML = ` <td>${fileName}</td> <td>${type}</td> <td>${dateStr}</td> <td><span class="status success">Available</span></td> <td class="actions"> <button class="action-btn" title="View"><i class="fa fa-eye"></i></button> <button class="action-btn" title="Download"><i class="fa fa-download"></i></button> </td>`;
+  tr.innerHTML = ` <td style='text-align:center;'>${fileName}</td> <td style='text-align:center;'>${type}</td> <td style='text-align:left;'>${dateStr}</td> <td style='text-align:center;'><span class="status success">Available</span></td> <td class="actions" style='text-align:center;'> <button class="action-btn" title="View"><i class="fa fa-eye"></i></button> <button class="action-btn" title="Download"><i class="fa fa-download"></i></button> </td>`;
   docBody.appendChild(tr);
 }
 function guessType2(name){
@@ -194,4 +194,15 @@ document.querySelectorAll('.sidebar-menu-item').forEach(function(btn){
 });
 </script>
 </body>
-</html>
+              <thead>
+                <tr style="background:#f2f5fb;color:#000;">
+                  <th style="color:#000;padding:12px 0;text-align:center;vertical-align:middle;width:38%;">Document Name</th>
+                  <th style="color:#000;padding:12px 0;text-align:center;vertical-align:middle;width:12%;">Type</th>
+                  <th style="color:#000;padding:12px 0;text-align:center;vertical-align:middle;width:18%;">Date Uploaded</th>
+                  <th style="color:#000;padding:12px 0;text-align:center;vertical-align:middle;width:18%;">Status</th>
+                  <th style="color:#000;padding:12px 0;text-align:center;vertical-align:middle;width:14%;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="docBody" style="text-align:center;">
+                <!-- Starts empty. Rows will be added after successful upload -->
+              </tbody>

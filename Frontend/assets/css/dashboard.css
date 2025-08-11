@@ -43,7 +43,7 @@ body {
 }
 .sidebar-logo h2 {
     font-size: 22px;
-    color: var(--accent-color);
+    color: #000;
 }
 .sidebar-toggle-btn-internal {
     background: none;
